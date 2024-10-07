@@ -1,0 +1,120 @@
+.loginpage-container {
+    height: 100vh;
+    width: 100%;
+    background-color: #DADADA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    height: 60vh;
+    width: 50vw;
+    background-color: rgb(154, 154, 129);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.login-image-container {
+    height: 100%;
+    flex: 0.6;
+}
+
+.login-divider {
+    height: 90%;
+    width: 1.5px;
+    background-color: grey;
+}
+
+.login-input-container {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user--pass--container {
+    height:60%;
+    width: 60%;
+    // background-color: yellow;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .username-input {
+        height: 2.5rem;
+        width: 100%;
+        border-radius: 4px;
+        box-shadow: none;
+        border: none;
+        box-sizing: border-box;
+        padding-inline: 6px;
+        font-size: 16px;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        box-shadow: 0 1px grey;
+    }
+
+    .username-input:focus {
+        outline: none;
+    }
+
+    .password-input {
+        height: 2.5rem;
+        width: 100%;
+        border-radius: 4px;
+        box-shadow: none;
+        border: none;
+        box-sizing: border-box;
+        padding-inline: 6px;
+        font-size: 16px;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        box-shadow: 0 1px grey;
+    }
+
+    .password-input:focus {
+        outline: none;
+    }
+
+    .auth-button {
+        height: 2.5rem;
+        width: 100%;
+        border-radius: 8px;
+        background-color: rgb(136, 211, 23);
+        outline: none;
+        border: none;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-weight: 600;
+        font-size: 15px;
+        box-shadow: 0 2px grey;
+    }
+
+    .auth-button:hover {
+        background-color: rgb(122, 189, 21);;
+    }
+
+    .auth-button:active {
+        box-shadow: 0 1px grey;
+        transform: translateY(1.5px);
+    }
+}
+
+.login-header {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: rgb(71, 56, 37);
+}
+
+.input-placeholder {
+    width: 100%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 15px;
+    color: rgb(53, 53, 53);
+    font-weight: 800;
+    box-sizing: border-box;
+    padding-left: 4px;
+}
