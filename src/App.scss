@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
   margin: 0;
   background-color: "#DADADA";
+  font-family: "Montserrat", sans-serif;
 }
 
 .main-container {
@@ -40,11 +43,27 @@ body {
       display: flex;
       align-items: center;
       box-sizing: border-box;
-      padding-inline: 20px;
 
-      .profImage {
-        height: 60%;
-        width: 28%;
+      .profImage--container {
+        height: 100%;
+        width: 35%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end
+        ;
+        .profImage {
+            height: 6.5em;
+            width: 6.5em;
+        }
+      }
+      
+      .user-info--container {
+        height: 100%;
+        width: 65%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
       }
     }
   }
