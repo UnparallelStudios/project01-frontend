@@ -1,9 +1,10 @@
 import "./App.scss";
+import "remixicon/fonts/remixicon.css";
 import Navbar from "./components/Navbar";
 import profImage from "./assets/pfpimage.png";
 import normalVideo from "./assets/normal.mp4";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
 let mediaDevices = navigator.mediaDevices;
 
@@ -11,14 +12,17 @@ function App() {
   const videoRef = useRef();
   const feedRef = useRef();
   const userName = localStorage.getItem("user");
+  const [feedActive, setFeedActive] = useState(true);
+  const [stream, setStream] = useState(new MediaStream());
   const navigate = useNavigate();
 
   useEffect(() => {
     if (userName == null) {
       navigate("/");
     }
-    mediaDevices.getUserMedia({ video: true }).then((stream) => {
-      feedRef.current.srcObject = stream;
+    mediaDevices.getUserMedia({ video: true }).then((s) => {
+      setStream(s);
+      feedRef.current.srcObject = s;
     });
   }, []);
 
@@ -29,14 +33,84 @@ function App() {
         <div className="content-container">
           <div className="profile-feed-container">
             {/* live feed container */}
-            <div className="feed-container">
+            <div
+              style={{
+                position: "relative",
+                overflow: "hidden",
+                borderRadius: "16px",
+              }}
+              className="feed-container"
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  padding: "12px",
+                  zIndex: "30",
+                  left: "0",
+                  right: "0",
+                  bottom: "0",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div
+                  style={{
+                    background: "#514E4E",
+                    cursor: "pointer",
+                    color: "white",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "40px",
+                    height: "40px",
+                    borderRadius: "100px",
+                  }}
+                >
+                  <i class="ri-mic-line"></i>
+                </div>
+                <div
+                  style={{
+                    background: "#514E4E",
+                    color: "white",
+                    cursor: "pointer",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "40px",
+                    height: "40px",
+                    borderRadius: "100px",
+                  }}
+                  onClick={() => {
+                    console.log("clicked");
+                    if (feedActive) {
+                      const videoTrack = stream.getVideoTracks()[0];
+                      videoTrack.stop();
+                      stream.removeTrack(videoTrack);
+                      setFeedActive(false);
+                    } else {
+                      mediaDevices.getUserMedia({ video: true }).then((s) => {
+                        const videoTrack = s.getVideoTracks()[0];
+                        stream.addTrack(videoTrack);
+                        feedRef.current.srcObject = stream;
+                        setFeedActive(true);
+                      });
+                    }
+                  }}
+                >
+                  {feedActive ? (
+                    <i class="ri-video-off-line"></i>
+                  ) : (
+                    <i class="ri-video-on-line"></i>
+                  )}
+                </div>
+              </div>
               <video
+                src={stream}
                 onLoadedMetadata={(e) => {
                   e.target.play();
                 }}
                 ref={feedRef}
                 style={{ objectFit: "cover", width: "100%", height: "100%" }}
-                src=""
               ></video>
             </div>
             <div className="spacer-container"></div>
@@ -103,7 +177,7 @@ function App() {
             </div>
             <video
               ref={videoRef}
-              style={{ objectFit: "cover", height: "100%" }}
+              style={{ objectFit: "cover", height: "100%", width: "100%" }}
               autoPlay={true}
               loop={true}
               muted
