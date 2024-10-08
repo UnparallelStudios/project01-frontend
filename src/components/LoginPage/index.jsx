@@ -31,9 +31,9 @@ function LoginPage() {
       <div className="loginpage-container">
         <div className="login-container">
           <div className="login-image-container"></div>
-          <div className="login-divider"></div>
+          {/* <div className="login-divider"></div> */}
           <div className="login-input-container">
-            <div className="login-header">Sign in</div>
+            <div className="login-header">Welcome back!</div>
             <form className="user--pass--container" action="">
               <div className="input-placeholder">Username</div>
               <input
