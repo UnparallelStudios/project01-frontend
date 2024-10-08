@@ -5,9 +5,11 @@ import normalVideo from "./assets/normal.mp4";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useRef } from "react";
+let mediaDevices = navigator.mediaDevices;
 
 function App() {
   const videoRef = useRef();
+  const feedRef = useRef();
   const userName = localStorage.getItem("user");
   const navigate = useNavigate();
 
@@ -15,8 +17,11 @@ function App() {
     if (userName == null) {
       navigate("/");
     }
+    mediaDevices.getUserMedia({ video: true }).then((stream) => {
+      feedRef.current.srcObject = stream;
+    });
   }, []);
-  
+
   return (
     <>
       <div className="main-container">
@@ -24,7 +29,16 @@ function App() {
         <div className="content-container">
           <div className="profile-feed-container">
             {/* live feed container */}
-            <div className="feed-container"></div>
+            <div className="feed-container">
+              <video
+                onLoadedMetadata={(e) => {
+                  e.target.play();
+                }}
+                ref={feedRef}
+                style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                src=""
+              ></video>
+            </div>
             <div className="spacer-container"></div>
             <div className="profile-container">
               <div className="profImage--container">
