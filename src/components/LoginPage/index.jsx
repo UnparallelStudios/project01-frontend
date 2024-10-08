@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
+import logoImage from "../../assets/logo.png";
 
 function LoginPage() {
   const [usernameInput, setUsernameInput] = useState("");
@@ -30,7 +31,9 @@ function LoginPage() {
     <>
       <div className="loginpage-container">
         <div className="login-container">
-          <div className="login-image-container"></div>
+          <div className="login-image-container">
+            <img className="login-image" src={logoImage}></img>
+          </div>
           {/* <div className="login-divider"></div> */}
           <div className="login-input-container">
             <div className="login-header">Welcome back!</div>

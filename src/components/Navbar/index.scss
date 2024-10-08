@@ -1,7 +1,22 @@
 .navbar-container {
-    height: 14vh;
+  height: 14vh;
+  width: 100%;
+  // background-color: black;
+  box-sizing: border-box;
+  padding-inline: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo-container {
+  height: 100%;
+  width: 22%;
+  display: flex;
+  align-items: center;
+
+  .nav-logo {
+    height: 90%;
     width: 100%;
-    // background-color: black;
-    box-sizing: border-box;
-    padding-inline: 2rem;
+    object-fit: contain;
+  }
 }
